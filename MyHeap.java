@@ -23,10 +23,21 @@ public class MyHeap {
   // - push the element at index i up into the correct position. This will swap it with the parent node until the parent node is larger or the root is reached. [ should be O(logn) ]
   // - precondition: index is between 0 and data.length-1 inclusive.
   private static void pushUp(int[] data, int index) {
-
+    if ((index - 1) / 2 >= 0) {
+      if (data[index] > data[(index - 1) / 2]) {
+        int temp = data[(index - 1) / 2];
+        data[(index - 1) / 2] = data[index];
+        data[index] = temp;
+        pushUp(data, (index - 1) / 2);
+      }
+    }
   }
   // - convert the array into a valid heap. [ should be O(n) ]
-  public static void heapify(int[] data) {}
+  public static void heapify(int[] data) {
+    for (int i = data.length - 1; i >= 0; i--) {
+      pushDown(data, data.length, i);
+    }
+  }
   // - sort the array by converting it into a heap then removing the largest value n-1 times. [ should be O(nlogn) ]
   public static void heapsort(int[] data) {}
   public static void main(String[] args) {
