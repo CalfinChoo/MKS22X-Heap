@@ -39,10 +39,20 @@ public class MyHeap {
     }
   }
   // - sort the array by converting it into a heap then removing the largest value n-1 times. [ should be O(nlogn) ]
-  public static void heapsort(int[] data) {}
-  public static void main(String[] args) {
-    int[] test = {8, 4, 17, 9, 0, 7, 12};
-    pushDown(test, test.length, 0);
-    for (int i : test) System.out.println(i);
+  public static void heapsort(int[] data) {
+    int size = data.length;
+    heapify(data);
+    while (size > 0) {
+      int temp = data[0];
+      data[0] = data[size - 1];
+      data[size - 1] = temp;
+      size--;
+      pushDown(data, size, 0);
+    }
   }
+  // public static void main(String[] args) {
+  //   int[] test = {8, 4, 17, 9, 0, 7, 12};
+  //   heapsort(test);
+  //   for (int i : test) System.out.println(i);
+  // }
 }
